@@ -22,6 +22,10 @@ body {
     margin-top: 20%;
 }
 
+.bottom-text {
+    margin-top: 75%;
+}
+
 .btn {
     background-color: #1ed760;
     color: #000000;
