@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
         queryString.stringify({
           grant_type: "authorization_code",
           code: req.query.code,
-          redirect_uri: process.env.REDIRECT_DECODE,       //change once hosted
+          redirect_uri: process.env.REDIRECT_DECODE,       
         }),
         {
           headers: {
@@ -79,7 +79,8 @@ app.get("/", (req, res) => {
 
     res.render('home.ejs', { correct, guess, numTest, playerLink });
   } catch(e) {
-    res.status(404).send("API connection error.")
+    console.log(e);
+    res.status(500).send("API connection error.")
   }
   });
 
