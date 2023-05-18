@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
   try {
     res.render('index.ejs', { clientId: process.env.CLIENT_ID, redirect: process.env.REDIRECT_URI });
   } catch(e) {
-    res.status(404).send("Sorry, technical difficulties. Try again later.")
+    res.status(404).send("Redirect error.")
   }
   });
 
@@ -79,7 +79,7 @@ app.get("/", (req, res) => {
 
     res.render('home.ejs', { correct, guess, numTest, playerLink });
   } catch(e) {
-    res.status(404).send("Sorry, technical difficulties. Try again later.")
+    res.status(404).send("API connection error.")
   }
   });
 
