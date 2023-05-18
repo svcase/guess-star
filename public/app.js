@@ -47,5 +47,5 @@ function wrongGuess() {
   setTimeout(() => { 
     document.getElementById('songSearch').style.backgroundColor = 'white';
     document.getElementById('thisGuess').style.color = 'white';
-   }, 250);
+   }, 400);
 };
