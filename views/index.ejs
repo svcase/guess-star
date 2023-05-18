@@ -1,0 +1,24 @@
+<%- include('partials/head') %>
+<h1>Welcome to Guess Star!</h1>
+<p>The song-a-day guessing game.</p>
+    <div class="instruction">
+        <h2>How to Play:</h2>
+        <p>You have 3 chances and 20 seconds to try and guess the song title based on the clip provided as quickly as you can.
+            Use the play/pause button to start and stop the song and the timer as much as you need. 
+            Make a guess once you think you know it! Let's see how quick you are!
+        </p>
+    </div>
+
+    <div class="login">
+        <h3>Please Login to Spotify First:</h3>
+        <a class="btn" href="https://accounts.spotify.com/authorize?client_id=<%=clientId%>&response_type=code&redirect_uri=<%=redirect%>"><i class="fa-brands fa-spotify"></i> Log In to Spotify</a>
+        <p class="login-disclaim">Music for Guess Star is provided by Spotify, so login to your Spotify account is required
+            to ensure the game functions properly. Guess Star does not collect any of your Spotify account data, login is simply required
+            by Spotify to enable the ability to search Spotify's catalogue as part of the game. Guess Star is not affiliated with Spotify. 
+        </p>
+    </div>
+    
+    <p>Dont have a Spotify account? Sign up for one here:</p>
+    <a class="btn" href="https://www.spotify.com/"><i class="fa-brands fa-spotify"></i> Get Spotify Free</a>
+</body>
+</html>

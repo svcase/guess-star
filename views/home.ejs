@@ -1,0 +1,78 @@
+<%- include('partials/head') %>
+
+    <h1>Quick, What Song Is This?!</h1>
+    <div class="player-container">
+        <audio hidden id="player" controls="" name="media">
+            <source src="<%=playerLink%>" type="audio/mpeg">
+        </audio>
+        <button id="togglePlay">&#9658</button>
+    </div>
+
+    <div class="timer-container">
+        <div id="time">
+            <span class="digit">
+                00</span>
+            <span class="txt">:</span>
+            <span class="digit" id="sec">
+                00</span>
+            <span class="txt">.</span>
+            <span class="digit" id="count">
+                00</span>
+        </div>
+        <p>Guess #: <span id="thisGuess">1</span> of 3.</p>
+    </div>  
+
+    <div class="guess-container">
+
+        <form action="/home" method="post" id="artSearchForm" onsubmit="checkClick(event)">
+            <label for="songSearch"></label>
+                <input id="songSearch" class="songSearch" type="text" placeholder="Song Title..." name="song">
+            </label>
+            <p class="guess-inst">Include any relevant punctuation. Capitalization does not matter.</p>
+            <input hidden type="text" id="guessCount" name="guesses" value="1">
+            <input hidden id="seconds" type="text" name="second" value="">
+            <input hidden id="milliseconds" type="text" name="milSecond" value="">
+            
+            <button class="btn guess-btn" type="submit">Guess</button>
+        </form>
+    </div>
+
+    <script src="/app.js"></script>
+    <script>
+
+        let guessNum = 1;
+        function numChange(str) {
+            let orig = str.toLowerCase();
+            let result = '';
+            if (orig) {
+                for (let i=0; i<orig.length; i++) {
+                    result += orig.charCodeAt(i);
+                }
+                return result;
+            }
+        };
+
+        function checkClick(e) {
+            const guess = numChange(document.getElementById('songSearch').value);
+            const actual = "<%=numTest%>";
+            let currentSec = document.getElementById('sec').innerHTML;
+            let currentMilSec = document.getElementById('count').innerHTML;
+            guessNum += 1;
+            document.getElementById('guessCount').value = guessNum.toString();
+            document.getElementById('seconds').value = currentSec;
+            document.getElementById('milliseconds').value = currentMilSec;
+            document.getElementById('thisGuess').innerHTML = guessNum;
+
+
+            if (guess !== actual && guessNum < "4") {
+                e.preventDefault();
+                document.getElementById('songSearch').value = '';
+                return false;
+             } else {
+                return true;
+             }
+        };
+    </script>
+</body>
+</html>
+

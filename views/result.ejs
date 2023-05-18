@@ -1,0 +1,17 @@
+
+<%- include('partials/head') %>
+
+<h2>Way to Go!</h2> 
+<h4>You got it in:</h4>
+<h2><span class="final-time"><%=guess.second%>.<%=guess.millisecond%></span> seconds!</h2>
+<h3>It took you <span class="final-number"><%=Number(guess.count) - 1%></span> guesses.</h3>
+<div class="result-container">
+    <img src="<%= correct.albumImgSrc %>" alt="">
+    <h3><%= correct.artist %></h3>
+    <h2><%= correct.song %></h2>
+    <p><%= correct.releaseYear.substring(0,4) %></p>
+</div>
+<a class="btn" href="<%= correct.listen %>" target="_blank"><i class="fa-brands fa-spotify"></i> Listen on Spotify</a>
+
+</body>
+</html>

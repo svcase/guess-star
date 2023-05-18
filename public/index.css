@@ -1,0 +1,121 @@
+body {
+    font-family: sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+.instruction {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    border-top: 1px solid rgba(196, 196, 196, 0.5);
+}
+
+.login {
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+
+.login-disclaim {
+    font-size: 0.7rem;
+    margin-top: 20%;
+}
+
+.btn {
+    background-color: #1ed760;
+    color: #000000;
+    font-weight: 600;
+    padding: 2.5% 5%;
+    border-radius: 25px;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    text-decoration: none;
+}
+
+button {
+    background-color: #1ed760;
+    color: #000000;
+    display: block;
+    margin: auto;
+}
+
+.player-container {
+    margin-top: 10%;
+}
+
+#togglePlay {
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 3% 4.5%;
+    font-size: 2.5rem;
+    letter-spacing: -3px;
+}
+
+#time {
+    padding: 2.5rem 0 2.5rem 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guess-container {
+    margin-top: 7%;
+}
+
+#thisGuess {
+    font-size: 2.5rem;
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#songSearch {
+    border-radius: 10px;
+    padding: 1%;
+    border: 2px solid #1ed760;
+    width: 60%;
+    height: 1.2rem;
+}
+
+.guess-inst {
+    font-size: 0.5rem;
+}
+
+.guess-btn {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.final-time {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    color: #1ed760;
+    margin-bottom: 0;
+}
+
+.final-number {
+    font-family: 'Roboto Mono', monospace;
+    color: #1ed760;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.result-container {
+    margin-top: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 10%;
+    border-top: 1px solid rgba(196, 196, 196, 0.5);
+    border-bottom: 1px solid rgb(196, 196, 196, 0.5);
+}
+
+
+@media (min-width: 768px) {
+    body {
+        margin-left: 35%;
+        margin-right: 35%;
+    }
+}
