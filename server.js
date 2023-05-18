@@ -40,22 +40,14 @@ function numChange(str) {
   }
 };
 
-app.get("/", (req, res) => {
-  try {
-    res.render('index.ejs', { clientId: process.env.CLIENT_ID, redirect: process.env.REDIRECT_URI });
-  } catch(e) {
-    res.status(404).send("Redirect error.")
-  }
-  });
-
   app.get("/home", async (req, res) => {
     try {
     const spotifyResponse = await axios.post(
         "https://accounts.spotify.com/api/token",
         queryString.stringify({
-          grant_type: "client_credentials",             //authorization_code
-          client_id: process.env.CLIENT_ID,                         //code: req.query.code
-          client_secret: process.env.CLIENT_SECRET,              //redirect_uri: process.env.REDIRECT_DECODE
+          grant_type: "client_credentials",             
+          client_id: process.env.CLIENT_ID,                         
+          client_secret: process.env.CLIENT_SECRET,              
         }),
         {
           headers: {
