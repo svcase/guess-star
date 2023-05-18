@@ -40,6 +40,14 @@ function numChange(str) {
   }
 };
 
+app.get("/", (req, res) => {
+  try {
+    res.render('index.ejs');
+  } catch(e) {
+    res.status(404).send("initial load error.")
+  }
+  });
+
   app.get("/home", async (req, res) => {
     try {
     const spotifyResponse = await axios.post(
