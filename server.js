@@ -53,9 +53,9 @@ app.get("/", (req, res) => {
     const spotifyResponse = await axios.post(
         "https://accounts.spotify.com/api/token",
         queryString.stringify({
-          grant_type: "authorization_code",
-          code: req.query.code,
-          redirect_uri: process.env.REDIRECT_DECODE,       
+          grant_type: "client_credentials",             //authorization_code
+          client_id: process.end.CLIENT_ID,                         //code: req.query.code
+          client_secret: process.env.CLIENT_SECRET,              //redirect_uri: process.env.REDIRECT_DECODE
         }),
         {
           headers: {
