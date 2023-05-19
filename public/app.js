@@ -34,10 +34,10 @@ if (secs == "25") {
 playPause.addEventListener('click', function() {
   if (audio.paused == true) {
     audio.play();
-    playPause.innerHTML = '&#10074; &#10074';
+    playPause.innerHTML = '<i class="fa-solid fa-pause"> </i>';
   } else {
     audio.pause();
-    playPause.innerHTML = '&#9658';
+    playPause.innerHTML = '<i class="fa-solid fa-play"></i>';
   }
 });
 
