@@ -34,16 +34,18 @@ if (secs == "25") {
 playPause.addEventListener('click', function() {
   if (audio.paused == true) {
     audio.play();
-    playPause.innerHTML = '<i class="fa-solid fa-pause"> </i>';
+    playPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    playPause.style.backgroundColor = '#FFE400';
   } else {
     audio.pause();
     playPause.innerHTML = '<i class="fa-solid fa-play"></i>';
+    playPause.style.backgroundColor = '#32cd32';
   }
 });
 
 function wrongGuess() {
-  document.getElementById('songSearch').style.backgroundColor = '#f6a0a0';
-  document.getElementById('thisGuess').style.color = '#f6a0a0';
+  document.getElementById('songSearch').style.backgroundColor = '#ff652f';
+  document.getElementById('thisGuess').style.color = '#ff652f';
   setTimeout(() => { 
     document.getElementById('songSearch').style.backgroundColor = 'white';
     document.getElementById('thisGuess').style.color = 'white';
