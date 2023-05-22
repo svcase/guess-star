@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
     
     let numTest = numChange(correct.song);
 
-    res.render('home.ejs', { correct, guess, numTest, playerLink });
+    res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
   } catch(e) {
     console.log(e);
     res.status(500).send("API connection error.")

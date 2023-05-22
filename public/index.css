@@ -54,6 +54,10 @@ button {
     text-decoration: none;
 }
 
+.guest {
+    font-size: 0.7rem;
+}
+
 .player-container {
     margin-top: 10%;
 }

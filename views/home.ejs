@@ -1,6 +1,7 @@
 <%- include('partials/head') %>
 
     <h1>Quick, What Song Is This?!</h1>
+    <p class="guest">Today's song picked by:  <%=guest%></p>
     <div class="player-container">
         <audio hidden id="player" controls="" name="media">
             <source src="<%=playerLink%>" type="audio/mpeg">
