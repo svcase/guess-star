@@ -58,6 +58,11 @@ button {
     font-size: 0.7rem;
 }
 
+.guest-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .player-container {
     margin-top: 10%;
 }
