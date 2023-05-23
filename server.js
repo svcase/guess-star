@@ -92,28 +92,12 @@ app.get("/", (req, res) => {
     guess.millisecond = req.body.milSecond;                    
 
     if (guess.song.toLowerCase() === correct.song.toLowerCase()) {
-      res.redirect('/result');
+      res.render('result.ejs', { correct, guess });
     } else if (guess.count === "4") {
-      res.redirect('/wrong');
+      res.render('wrong.ejs', { correct, guess });
     } else {
       return false;
     }
-});
-
-app.get('/result', (req, res) => {
-  try {
-    res.render('result.ejs', { correct, guess });
-  } catch(e) {
-    res.status(404).send("Not found")
-  }
-});
-
-app.get('/wrong', (req, res) => {
-  try {
-    res.render('wrong.ejs', { correct, guess });
-  } catch(e) {
-    res.status(404).send("Not found")
-  }
 });
 
 const port = process.env.PORT || 3000;
