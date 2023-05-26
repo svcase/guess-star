@@ -13,7 +13,9 @@ audio.addEventListener('timeupdate',function(){
     secs = timer.toString().substring(0,2);
   }
 
-if (timer < 10000) {
+  if (timer < 1000) {
+    mills = ("00" + timer).substring(2,4);
+  } else if (timer < 10000) {
     mills = ("0" + timer).substring(2,4);
 } else {
   mills = timer.toString().substring(2,4);
