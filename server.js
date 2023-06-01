@@ -91,7 +91,7 @@ app.get("/", (req, res) => {
     guess.second = req.body.second;
     guess.millisecond = req.body.milSecond; 
 
-    if (guess.song.toLowerCase().replace(/’/g, "'") === correct.song.toLowerCase().replace(/’/g, "'")) {
+    if (guess.song.toLowerCase().replace(/’/g, "'").trim() === correct.song.toLowerCase().replace(/’/g, "'")) {
       res.render('result.ejs', { correct, guess });
     } else if (guess.count === "4") {
       res.render('wrong.ejs', { correct, guess });
