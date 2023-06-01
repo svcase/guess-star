@@ -54,7 +54,7 @@
         };
 
         function checkClick(e) {
-            const guess = numChange(document.getElementById('songSearch').value);
+            const guess = numChange(document.getElementById('songSearch').value.replace(/'/g, ''));
             const actual = "<%=numTest%>";
             let currentSec = document.getElementById('sec').innerHTML;
             let currentMilSec = document.getElementById('count').innerHTML;

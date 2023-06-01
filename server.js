@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
     correct.releaseYear = answer.data.album.release_date;
     correct.listen = answer.data.external_urls.spotify;
     
-    let numTest = numChange(correct.song);
+    let numTest = numChange(correct.song.replace(/'/g, ''));
 
     res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
   } catch(e) {
@@ -89,9 +89,9 @@ app.get("/", (req, res) => {
     guess.song = req.body.song;
     guess.count = req.body.guesses;
     guess.second = req.body.second;
-    guess.millisecond = req.body.milSecond;                    
+    guess.millisecond = req.body.milSecond; 
 
-    if (guess.song.toLowerCase() === correct.song.toLowerCase()) {
+    if (guess.song.toLowerCase().replace(/'/g, '') === correct.song.toLowerCase().replace(/'/g, '')) {
       res.render('result.ejs', { correct, guess });
     } else if (guess.count === "4") {
       res.render('wrong.ejs', { correct, guess });
