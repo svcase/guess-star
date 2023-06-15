@@ -1,6 +1,8 @@
 const audio = document.getElementById('player');
 const playPause = document.getElementById('togglePlay');
 
+let guessNum = 1;
+
 audio.addEventListener('timeupdate',function(){
   let timer = audio.currentTime * 1000;
   let secs = "";         
@@ -52,4 +54,39 @@ function wrongGuess() {
     document.getElementById('songSearch').style.backgroundColor = 'white';
     document.getElementById('thisGuess').style.color = 'white';
    }, 400);
+};
+
+
+function numChange(str) {
+  let orig = str.toLowerCase();
+  let result = '';
+  if (orig) {
+      for (let i=0; i<orig.length; i++) {
+          result += orig.charCodeAt(i);
+      }
+      return result;
+  }
+};
+
+function checkClick(e) {
+  const guess = numChange(document.getElementById('songSearch').value.replace(/’/g, "'").trim());
+  let currentSec = document.getElementById('sec').innerHTML;
+  let currentMilSec = document.getElementById('count').innerHTML;
+  guessNum += 1;
+  document.getElementById('guessCount').value = guessNum.toString();
+  document.getElementById('seconds').value = currentSec;
+  document.getElementById('milliseconds').value = currentMilSec;
+  if (guessNum < "4") {
+  document.getElementById('thisGuess').innerHTML = guessNum;
+  } else document.getElementById('thisGuess').innerHTML = "3";
+
+
+  if (guess !== actual && guessNum < "4") {
+      e.preventDefault();
+      wrongGuess();
+      document.getElementById('songSearch').value = '';
+      return false;
+   } else {
+      return true;
+   }
 };
