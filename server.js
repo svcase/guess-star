@@ -80,7 +80,8 @@ app.get("/", (req, res) => {
     res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
   } catch(e) {
     console.log(e);
-    res.status(500).send("API connection error.")
+    const error = { code: 404, message: "Page not found"};
+    res.status(error.code).render('error.ejs', { error });
   }
   });
 
