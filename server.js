@@ -84,6 +84,13 @@ app.get("/", (req, res) => {
   }
   });
 
+  app.get("/result", (req, res) => {
+      res.render('result.ejs', { correct, guess });
+    });
+
+  app.get("/wrong", (req, res) => {
+      res.render('wrong.ejs', { correct, guess });
+    });
 
   app.post('/home', async (req, res) => {
     guess.song = req.body.song;
@@ -92,13 +99,18 @@ app.get("/", (req, res) => {
     guess.millisecond = req.body.milSecond; 
 
     if (guess.song.toLowerCase().replace(/’/g, "'").trim() === correct.song.toLowerCase().replace(/’/g, "'")) {
-      res.render('result.ejs', { correct, guess });
+      res.redirect('/result');
     } else if (guess.count === "4") {
-      res.render('wrong.ejs', { correct, guess });
+      res.redirect('/wrong');
     } else {
       return false;
     }
 });
+
+app.use((err, req, res, next) => {
+    const error = { code: 404, message: "Page not found"};
+    res.status(error.code).render('error.ejs', { error });
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () =>
