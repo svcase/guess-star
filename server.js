@@ -50,48 +50,48 @@ app.get("/", (req, res) => {
 
   app.get("/home", async (req, res) => {
     try {
-    const spotifyResponse = await axios.post(
-        "https://accounts.spotify.com/api/token",
-        queryString.stringify({
-          grant_type: "client_credentials",             
-          client_id: process.env.CLIENT_ID,                         
-          client_secret: process.env.CLIENT_SECRET,              
-        }),
-        {
-          headers: {
-            Authorization: "Basic " + process.env.BASE64,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      correct.artist = '';
+      correct.song = '';
+      correct.albumImgSrc = '';
+      correct.releaseYear = '';
+      correct.listen = '';
 
-    const answer = await axios.get(`https://api.spotify.com/v1/tracks/${process.env.TRACK}`, { 
-      headers: 
-    { Authorization: `Bearer ${spotifyResponse.data.access_token}` }
-    });
-    correct.artist = answer.data.artists[0].name;
-    correct.song = answer.data.name;
-    correct.albumImgSrc = answer.data.album.images[1].url;
-    correct.releaseYear = answer.data.album.release_date;
-    correct.listen = answer.data.external_urls.spotify;
-    
-    let numTest = numChange(correct.song.replace(/’/g, "'"));
+      const spotifyResponse = await axios.post(
+          "https://accounts.spotify.com/api/token",
+          queryString.stringify({
+            grant_type: "client_credentials",             
+            client_id: process.env.CLIENT_ID,                         
+            client_secret: process.env.CLIENT_SECRET,              
+          }),
+          {
+            headers: {
+              Authorization: "Basic " + process.env.BASE64,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
 
-    res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
+      const answer = await axios.get(`https://api.spotify.com/v1/tracks/${process.env.TRACK}`, { 
+          headers: 
+        { Authorization: `Bearer ${spotifyResponse.data.access_token}` }
+      });
+
+      correct.artist = answer.data.artists[0].name;
+      correct.song = answer.data.name;
+      correct.albumImgSrc = answer.data.album.images[1].url;
+      correct.releaseYear = answer.data.album.release_date;
+      correct.listen = answer.data.external_urls.spotify;
+      
+      let numTest = numChange(correct.song.replace(/’/g, "'"));
+
+      res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
+
   } catch(e) {
     console.log(e);
     const error = { code: 404, message: "Page not found"};
     res.status(error.code).render('error.ejs', { error });
   }
   });
-
-  app.get("/result", (req, res) => {
-      res.render('result.ejs', { correct, guess });
-    });
-
-  app.get("/wrong", (req, res) => {
-      res.render('wrong.ejs', { correct, guess });
-    });
 
   app.post('/home', async (req, res) => {
     guess.song = req.body.song;
@@ -100,9 +100,9 @@ app.get("/", (req, res) => {
     guess.millisecond = req.body.milSecond; 
 
     if (guess.song.toLowerCase().replace(/’/g, "'").trim() === correct.song.toLowerCase().replace(/’/g, "'")) {
-      res.redirect('/result');
+      res.render('result.ejs', { correct, guess });;
     } else if (guess.count === "4") {
-      res.redirect('/wrong');
+      res.render('wrong.ejs', { correct, guess });
     } else {
       return false;
     }
