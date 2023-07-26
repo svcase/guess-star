@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const axios = require('axios');
+const ExpressError = require('./utils/ExpressError');
+const catchAsync = require('./utils/catchAsync');
 const queryString = require("node:querystring");
 require('dotenv').config();
 
@@ -48,8 +50,7 @@ app.get("/", (req, res) => {
   }
   });
 
-  app.get("/home", async (req, res) => {
-    try {
+  app.get("/home", catchAsync(async (req, res) => {
       correct.artist = '';
       correct.song = '';
       correct.albumImgSrc = '';
@@ -85,15 +86,9 @@ app.get("/", (req, res) => {
       let numTest = numChange(correct.song.replace(/’/g, "'"));
 
       res.render('home.ejs', { correct, guess, numTest, playerLink, guest: process.env.GUEST });
+  }));
 
-  } catch(e) {
-    console.log(e);
-    const error = { code: 404, message: "Page not found"};
-    res.status(error.code).render('error.ejs', { error });
-  }
-  });
-
-  app.post('/home', async (req, res) => {
+  app.post('/home', catchAsync(async (req, res) => {
     guess.song = req.body.song;
     guess.count = req.body.guesses;
     guess.second = req.body.second;
@@ -106,11 +101,15 @@ app.get("/", (req, res) => {
     } else {
       return false;
     }
-});
+}));
+
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404));
+})
 
 app.use((err, req, res, next) => {
-    const error = { code: 404, message: "Page not found"};
-    res.status(error.code).render('error.ejs', { error });
+    const {statusCode = 500, message = 'Oops Something went wrong.'} = err;
+    res.status(statusCode).render('error', { err });
 })
 
 const port = process.env.PORT || 3000;
