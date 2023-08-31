@@ -51,11 +51,11 @@ app.get("/", (req, res) => {
   });
 
   app.get("/home", catchAsync(async (req, res) => {
-      correct.artist = '';
-      correct.song = '';
-      correct.albumImgSrc = '';
-      correct.releaseYear = '';
-      correct.listen = '';
+
+      guess.song = '';
+      guess.count = '';
+      guess.second = '';
+      guess.millisecond = '';
 
       const spotifyResponse = await axios.post(
           "https://accounts.spotify.com/api/token",

@@ -87,6 +87,7 @@ function checkClick(e) {
       document.getElementById('songSearch').value = '';
       return false;
    } else {
+      guessNum = "1";
       return true;
    }
 };
